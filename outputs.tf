@@ -2,9 +2,9 @@
 resource "local_file" "AnsibleInventory" {
   content = templatefile("inventory.tmpl",
   {
-    aws_u1 = aws_instance.u1.public_ip,
-    aws_u2 = aws_instance.u2.public_ip,
-    aws_rhel1 = aws_instance.rhel1.public_ip,
+    appserver_ip = aws_instance.appserver.public_ip,
+    dbserver_ip = aws_instance.dbserver.public_ip,
+    webserver_ip = aws_instance.webserver.public_ip,
   }
  )
  filename = "inventory.txt"
