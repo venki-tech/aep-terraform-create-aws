@@ -1,7 +1,7 @@
 [all]
-aws_u1 ansible_host=18.133.175.89 ansible_connection=ssh ansible_user=ubuntu ansible_ssh_private_key_file=vvkey ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-aws_u2 ansible_host=35.178.196.231 ansible_connection=ssh ansible_user=ubuntu ansible_ssh_private_key_file=vvkey ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-aws_rhel1 ansible_host=52.56.205.100 ansible_connection=ssh ansible_user=ec2-user  ansible_ssh_private_key_file=vvkey ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+aws_u1 ansible_host=18.130.42.203 ansible_connection=ssh ansible_user=ubuntu ansible_ssh_private_key_file=vvkey ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+aws_u2 ansible_host=52.56.173.190 ansible_connection=ssh ansible_user=ubuntu ansible_ssh_private_key_file=vvkey ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+aws_rhel1 ansible_host=52.56.58.99 ansible_connection=ssh ansible_user=ec2-user  ansible_ssh_private_key_file=vvkey ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 
 [aws_instances]
 aws_u1
