@@ -1,4 +1,4 @@
 #hostnames
-web_host=aws_rhel1
-db_host=aws_u2
-app_host=aws_u1
+web_host=dev_aws_rhel1
+db_host=dev_aws_u2
+app_host=dev_aws_u1
