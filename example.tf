@@ -3,6 +3,11 @@ provider "aws" {
   region  = var.region
 }
 
+resource "aws_key_pair" "example" {
+  key_name   = "vvkey"
+  public_key = file("vvkey.pub")
+}
+
 resource "aws_instance" "appserver" {
   key_name      = aws_key_pair.example.key_name
   ami           = "ami-0fb673bc6ff8fc282"
