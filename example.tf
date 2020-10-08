@@ -10,7 +10,7 @@ resource "aws_key_pair" "example" {
 
 resource "aws_instance" "appserver" {
   key_name      = aws_key_pair.example.key_name
-  ami           = "${lookup(var.Ubuntu_AMIS,var.region)}"
+  ami           = lookup(var.Ubuntu_AMIS,var.region)
   instance_type = "t2.micro"
   tags          = {
     Name        = "ubuntu-java"
@@ -30,7 +30,7 @@ resource "aws_instance" "appserver" {
 
 resource "aws_instance" "dbserver" {
   key_name      = aws_key_pair.example.key_name
-  ami           = "${lookup(var.Ubuntu_AMIS,var.region)}"
+  ami           = lookup(var.Ubuntu_AMIS,var.region)
   instance_type = "t2.micro"
   tags          = {
     Name        = "ubuntu-mysql"
@@ -50,7 +50,7 @@ resource "aws_instance" "dbserver" {
 
   resource "aws_instance" "webserver" {
     key_name      = aws_key_pair.example.key_name
-    ami           = "${lookup(var.RH_AMIS,var.region)}"
+    ami           = lookup(var.RH_AMIS,var.region)
     instance_type = "t2.micro"
     tags          = {
       Name        = "rhel-apache"
