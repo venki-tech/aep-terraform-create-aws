@@ -1,7 +1,7 @@
 [all]
-awsdevubapp02 ansible_host=18.133.77.24 ansible_connection=ssh ansible_user=ubuntu ansible_ssh_private_key_file=vvkey ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-awsdevubdb02 ansible_host=35.178.29.103 ansible_connection=ssh ansible_user=ubuntu ansible_ssh_private_key_file=vvkey ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-awsdevrhweb02 ansible_host=18.132.196.186 ansible_connection=ssh ansible_user=ec2-user  ansible_ssh_private_key_file=vvkey ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+awsdevubapp02 ansible_host=3.8.114.41 ansible_connection=ssh ansible_user=ubuntu ansible_ssh_private_key_file=vvkey ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+awsdevubdb02 ansible_host=18.132.198.26 ansible_connection=ssh ansible_user=ubuntu ansible_ssh_private_key_file=vvkey ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+awsdevrhweb02 ansible_host=18.133.235.193 ansible_connection=ssh ansible_user=ec2-user  ansible_ssh_private_key_file=vvkey ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 
 [aws_instances]
 awsdevubapp02
