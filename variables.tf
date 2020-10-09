@@ -7,7 +7,7 @@ variable "aws_key" {
 }
 
 variable "aws_pub_key" {
-  default = _replacekey_.pub
+  default = "_replacekey_.pub"
 }
 
 variable "Ubuntu_AMIS" {
