@@ -2,6 +2,18 @@ variable "region" {
   default = "eu-west-2"
 }
 
+variable "awswebhost"{
+  default = "awswebhost"
+}
+
+variable "awsapphost"{
+  default = "awsapphost"
+}
+
+variable "awsdbhost"{
+  default = "awsdbhost"
+}
+
 variable "aws_key" {
   default = "_replacekey_"
 }
