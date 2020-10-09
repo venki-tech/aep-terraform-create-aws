@@ -1,4 +1,4 @@
 #hostnames
-web_host=awsdevrhweb02
-db_host=awsdevubdb02
-app_host=awsdevubapp02
+web_host=awsdevrhweb01
+db_host=awsdevubdb01
+app_host=awsdevubapp01
