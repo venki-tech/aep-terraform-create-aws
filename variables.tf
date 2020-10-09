@@ -2,6 +2,10 @@ variable "region" {
   default = "eu-west-2"
 }
 
+variable "aws_key" {
+  default = "_replacekey_"
+}
+
 variable "Ubuntu_AMIS" {
   type = map
   default = {

@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 resource "aws_key_pair" "example" {
-  key_name   = "vvkey"
+  key_name   = var.aws_key
   public_key = file("vvkey.pub")
 }
 
@@ -24,7 +24,7 @@ resource "aws_instance" "appserver" {
   }
 
   provisioner "local-exec" {
-  command = "echo connect to appserver using: ssh -i vvkey ubuntu@${aws_instance.appserver.public_ip}"
+  command = "echo connect to appserver using: ssh -i aws_key_pair.example.key_name ubuntu@${aws_instance.appserver.public_ip}"
   }
 }
 
@@ -44,7 +44,7 @@ resource "aws_instance" "dbserver" {
   }
 
   provisioner "local-exec" {
-    command = "echo connect to dbserver using: ssh -i vvkey ubuntu@${aws_instance.dbserver.public_ip}"
+    command = "echo connect to dbserver using: ssh -i aws_key_pair.example.key_name ubuntu@${aws_instance.dbserver.public_ip}"
   }
 }
 
@@ -64,7 +64,7 @@ resource "aws_instance" "dbserver" {
     }
 
     provisioner "local-exec" {
-      command = "echo connect to webserver using: ssh -i vvkey ec2-user@${aws_instance.webserver.public_ip}"
+      command = "echo connect to webserver using: ssh -i aws_key_pair.example.key_name ec2-user@${aws_instance.webserver.public_ip}"
     }
 }
 
