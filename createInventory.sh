@@ -28,13 +28,13 @@ git clone git@github.com:venki-tech/aep-ansible-provision.git
 cd ${WORKSPACE}/aep-ansible-provision
 git pull
 if [[ -f runninginventory.txt ]];then
-  echo "Running inventory file exists. Will add the new hosts into it.
+  echo "runninginventory.txt file exists. Will add the new hosts into it."
   cp ${WORKSPACE}/temp_repo_ws/inventory.txt .
 
-  perl -0777 -nle "print $1 if m/(\[all\](.|\n|\r)*)\[aws_instances/g" runninginventory.txt >> newrunninginventory.txt
-  perl -0777 -nle "print $1 if m/all\]((.|\n|\r)*)\[aws_instances/g" inventory.txt >> newrunninginventory.txt
-  perl -0777 -nle "print $1 if m/(\[aws_instances\](.|\n|\r)*)/g" runninginventory.txt  >> newrunninginventory.txt
-  perl -0777 -nle "print $1 if m/aws_instances\]((.|\n|\r)*)/g" inventory.txt >> newrunninginventory.txt
+  perl -0777 -nle 'print $1 if m/(\[all\](.|\n|\r)*)\[aws_instances/g' runninginventory.txt >> newrunninginventory.txt
+  perl -0777 -nle 'print $1 if m/all\]((.|\n|\r)*)\[aws_instances/g' inventory.txt >> newrunninginventory.txt
+  perl -0777 -nle 'print $1 if m/(\[aws_instances\](.|\n|\r)*)/g' runninginventory.txt  >> newrunninginventory.txt
+  perl -0777 -nle 'print $1 if m/aws_instances\]((.|\n|\r)*)/g' inventory.txt >> newrunninginventory.txt
 
   mv -f newrunninginventory.txt runninginventory.txt
   rm -f inventory.txt
