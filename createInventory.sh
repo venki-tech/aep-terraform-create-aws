@@ -27,11 +27,17 @@ echo "-------------------------------------"
 cd ${WORKSPACE}
 git clone git@github.com:venki-tech/aep-ansible-provision.git
 cd ${WORKSPACE}/aep-ansible-provision
+chmod -R 755 ${WORKSPACE}/aep-ansible-provision
 
-echo "Update contents of hosts.template from ${WORKSPACE}/temp_repo_ws/${hosts_file}"
+echo "Copy files ${WORKSPACE}/temp_repo_ws/${hosts_file} and ${WORKSPACE}/temp_repo_ws/${inv_file_deploy} to current location"
 cp ${WORKSPACE}/temp_repo_ws/${hosts_file} .
-cat ${hosts_file} >> hosts.template
 cp ${WORKSPACE}/temp_repo_ws/${inv_file_deploy} .
+
+echo "Printing contents of ${hosts_file}:"
+cat ${hosts_file}
+echo "Update contents of hosts.template from ${WORKSPACE}/temp_repo_ws/${hosts_file}"
+cat ${hosts_file} >> hosts.template
+
 
 if [[ -f runninginventory.txt ]];then
   echo "Check if the servers already exists, if yes do not add it to runninginventory.txt"
