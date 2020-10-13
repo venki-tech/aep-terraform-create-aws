@@ -27,7 +27,6 @@ echo "-------------------------------------"
 cd ${WORKSPACE}
 git clone git@github.com:venki-tech/aep-ansible-provision.git
 cd ${WORKSPACE}/aep-ansible-provision
-chmod -R 755 ${WORKSPACE}/aep-ansible-provision
 
 echo "Copy file ${WORKSPACE}/temp_repo_ws/${inv_file_deploy} to current location"
 cp ${WORKSPACE}/temp_repo_ws/${inv_file_deploy} .
@@ -36,6 +35,10 @@ echo "Update within temp location contents of hosts.template from ${WORKSPACE}/t
 cp ${WORKSPACE}/aep-ansible-provision/hosts.template ${WORKSPACE}/temp_repo_ws/
 cat ${WORKSPACE}/temp_repo_ws/${hosts_file} >> ${WORKSPACE}/temp_repo_ws/hosts.template
 
+echo "Showing conents of ${WORKSPACE}/temp_repo_ws/hosts.template:"
+cat ${WORKSPACE}/temp_repo_ws/hosts.template
+echo
+echo
 
 if [[ -f runninginventory.txt ]];then
   echo "Check if the servers already exists, if yes do not add it to runninginventory.txt"
