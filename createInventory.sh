@@ -14,7 +14,8 @@ inv_file_deploy="${keyname}_deploy_inventory.txt"
 cp inventory.txt ${inv_file_deploy}
 echo "Creating hosts file to be copied to the newly provisioned servers"
 hosts_file="${keyname}_hosts"
-perl -0777 -nle 'print "$2\t$1\n" while m/(.*) ansible_host=(.*)ansible_connection/g' > ${hosts_file}
+perl -0777 -nle 'print "$2\t$1\n" while m/(.*) ansible_host=(.*)ansible_connection/g' ${inv_file_deploy} > ${hosts_file}
+perl -i -pe 's/^(.*db[0-9]*)/$1   db/g' ${hosts_file}
 
 mkdir -p ${WORKSPACE}/temp_repo_ws
 echo "Copying files into temp_repo_ws"
@@ -29,6 +30,7 @@ cd ${WORKSPACE}/aep-ansible-provision
 
 echo "Update contents of hosts.template"
 cat ${WORKSPACE}/temp_repo_ws/${hosts_file} >> hosts.template
+cp ${WORKSPACE}/temp_repo_ws/${inv_file_deploy} .
 
 if [[ -f runninginventory.txt ]];then
   echo "Check if the servers already exists, if yes do not add it to runninginventory.txt"
@@ -52,7 +54,7 @@ else
   mv inventory.txt runninginventory.txt
 fi
 
-git add runninginventory.txt
+git add runninginventory.txt ${inv_file_deploy}
 git commit -m "Added inventory files to repo" || true
 git push origin HEAD:master
 rm -rf ${WORKSPACE}/aep-ansible-provision
