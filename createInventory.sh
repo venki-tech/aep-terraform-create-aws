@@ -29,14 +29,12 @@ git clone git@github.com:venki-tech/aep-ansible-provision.git
 cd ${WORKSPACE}/aep-ansible-provision
 chmod -R 755 ${WORKSPACE}/aep-ansible-provision
 
-echo "Copy files ${WORKSPACE}/temp_repo_ws/${hosts_file} and ${WORKSPACE}/temp_repo_ws/${inv_file_deploy} to current location"
-cp ${WORKSPACE}/temp_repo_ws/${hosts_file} .
+echo "Copy file ${WORKSPACE}/temp_repo_ws/${inv_file_deploy} to current location"
 cp ${WORKSPACE}/temp_repo_ws/${inv_file_deploy} .
 
-echo "Printing contents of ${hosts_file}:"
-cat ${hosts_file}
-echo "Update contents of hosts.template from ${WORKSPACE}/temp_repo_ws/${hosts_file}"
-cat ${hosts_file} >> hosts.template
+echo "Update within temp location contents of hosts.template from ${WORKSPACE}/temp_repo_ws/${hosts_file}"
+cp ${WORKSPACE}/aep-ansible-provision/hosts.template ${WORKSPACE}/temp_repo_ws/
+cat ${WORKSPACE}/temp_repo_ws/${hosts_file} >> ${WORKSPACE}/temp_repo_ws/hosts.template
 
 
 if [[ -f runninginventory.txt ]];then
