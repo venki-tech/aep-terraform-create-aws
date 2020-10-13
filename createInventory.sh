@@ -7,26 +7,29 @@ git remote set-url origin git@github.com:venki-tech/aep-terraform-create-aws.git
 git add terraform.tfstate*
 git commit -m "Added terraform state files to repo" || true
 git push origin HEAD:master
-mkdir -p ${WORKSPACE}/temp_repo_ws
-cp terraform.tfstate* inventory.txt supply_hosts.txt ${WORKSPACE}/temp_repo_ws
-rm -rf ${WORKSPACE}/aep-terraform-create-aws
 
-echo "-------------------------------------"
-cd ${WORKSPACE}
-git clone git@github.com:venki-tech/aws-terraform.git
-cd ${WORKSPACE}/aws-terraform
-git pull
-cp ${WORKSPACE}/temp_repo_ws/* .
-git add terraform.tfstate*
-git commit -m "Added terraform state files to repo" || true
-git push origin HEAD:master
-rm -rf ${WORKSPACE}/aws-terraform
+. ./supply_hosts.txt
+echo "Creating inventory file for current run for deploy"
+inv_file_deploy="${keyname}_deploy_inventory.txt"
+cp inventory.txt ${inv_file_deploy}
+echo "Creating hosts file to be copied to the newly provisioned servers"
+hosts_file="${keyname}_hosts"
+perl -0777 -nle 'print "$2\t$1\n" while m/(.*) ansible_host=(.*)ansible_connection/g' > ${hosts_file}
+
+mkdir -p ${WORKSPACE}/temp_repo_ws
+echo "Copying files into temp_repo_ws"
+cp terraform.tfstate* inventory.txt supply_hosts.txt ${inv_file_deploy} ${hosts_file} ${WORKSPACE}/temp_repo_ws/
+
+rm -rf ${WORKSPACE}/aep-terraform-create-aws
 
 echo "-------------------------------------"
 cd ${WORKSPACE}
 git clone git@github.com:venki-tech/aep-ansible-provision.git
 cd ${WORKSPACE}/aep-ansible-provision
-git pull
+
+echo "Update contents of hosts.template"
+cat ${WORKSPACE}/temp_repo_ws/${hosts_file} >> hosts.template
+
 if [[ -f runninginventory.txt ]];then
   echo "Check if the servers already exists, if yes do not add it to runninginventory.txt"
   cp ${WORKSPACE}/temp_repo_ws/supply_hosts.txt .
@@ -48,7 +51,8 @@ else
   cp ${WORKSPACE}/temp_repo_ws/inventory.txt .
   mv inventory.txt runninginventory.txt
 fi
-git add *inventory*
+
+git add runninginventory.txt
 git commit -m "Added inventory files to repo" || true
 git push origin HEAD:master
 rm -rf ${WORKSPACE}/aep-ansible-provision
