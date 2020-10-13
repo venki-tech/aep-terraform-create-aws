@@ -28,8 +28,9 @@ cd ${WORKSPACE}
 git clone git@github.com:venki-tech/aep-ansible-provision.git
 cd ${WORKSPACE}/aep-ansible-provision
 
-echo "Update contents of hosts.template"
-cat ${WORKSPACE}/temp_repo_ws/${hosts_file} >> hosts.template
+echo "Update contents of hosts.template from ${WORKSPACE}/temp_repo_ws/${hosts_file}"
+cp ${WORKSPACE}/temp_repo_ws/${hosts_file} .
+cat ${hosts_file} >> hosts.template
 cp ${WORKSPACE}/temp_repo_ws/${inv_file_deploy} .
 
 if [[ -f runninginventory.txt ]];then
