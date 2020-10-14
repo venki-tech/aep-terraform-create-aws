@@ -1,4 +1,4 @@
-#created by generate_hosts_pipeline at 20201015_002226
-app_host=awsdevubapp02
-web_host=awsdevrhweb02
-db_host=awsdevubdb02
+#created by generate_hosts_pipeline at 20201015_002311
+app_host=awsdevubapp03
+web_host=awsdevrhweb03
+db_host=awsdevubdb03
