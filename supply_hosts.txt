@@ -1,4 +1,0 @@
-#created by generate_hosts_pipeline at 20201015_003432
-app_host=awsdevubapp03
-web_host=awsdevrhweb03
-db_host=awsdevubdb03
